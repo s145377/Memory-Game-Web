@@ -1,0 +1,4 @@
+5/20/13:
+-Add in the buttons and allow them to change colors from white>red>blue>green, allow these colors to be changed easily and more to be added on simply!
+-Make the basic framework for the app
+
