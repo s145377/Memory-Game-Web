@@ -10,5 +10,5 @@ var tiles = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	}
 	var ID = button.id
 	$(button).text(5)
-	alert(tiles[button.id-1])
+	alert(tiles[button.id])
 }
