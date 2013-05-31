@@ -1,5 +1,5 @@
 // JavaScript Document
 
-function clicked() {
-alert("test")
+function clickedTile(button) {
+alert(button.id)
 }
