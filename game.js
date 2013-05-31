@@ -1,8 +1,14 @@
 // JavaScript Document
-var buttonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+var tiles = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 	function clickedTile(button) {
-	buttonArray[button.id-1] += 1
+	
+	if (tiles[button.id] == 1){
+		tiles[button.id] = 0
+	}
+	else{
+		tiles[button.id] += 1
+	}
 	var ID = button.id
 	$(button).text(5)
-	alert(buttonArray[button.id-1])
+	alert(tiles[button.id-1])
 }
