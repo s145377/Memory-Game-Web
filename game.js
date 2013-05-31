@@ -1,8 +1,15 @@
 // JavaScript Document
-var buttonArray = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-	function clickedTile(button) {
-	buttonArray[button.id-1] += 1
-	var ID = button.id
-	$(button).text(5)
-	alert(buttonArray[button.id-1])
+var tiles = [new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1),new tile(1)]
+function clickedTile(button) {
+	tiles[button.id] = new tile($(button).text())
+	tiles[button.id].number(5)
+	alert(tiles[button.id].number())
+}
+function tile(number) { //TODO: add color
+	function number() {
+		return number
+	}
+	function number(n) {
+		number = n
+	}
 }
