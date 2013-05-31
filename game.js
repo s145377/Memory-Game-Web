@@ -1,6 +1,6 @@
 // JavaScript Document
 
 function clickedTile(button) {
-button.
-alert(button.id)
+$(button).text(5)
+alert($(button).text())
 }
