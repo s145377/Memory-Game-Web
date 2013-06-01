@@ -8,7 +8,6 @@
 </head>
 <body>
 <table width="500" height="500">
-<script> window.onLoad=setup() </script>
     <tr><td> <button id="0" onClick="clickedTile(this)" style="visibility:visible">1</button>
   </td> <td> <button id="1" onClick="clickedTile(this)" style="visibility:hidden">2</button>
   </td> <td> <button id="2" onClick="clickedTile(this)" style="visibility:hidden">3</button>
@@ -31,6 +30,7 @@
   </td></tr>
 </table>
 <button id="reset" onClick="reset()"> Reset </button>
+<script> window.onload = reset(); </script>
 </body>
 </html>
 
