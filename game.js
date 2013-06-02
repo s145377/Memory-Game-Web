@@ -24,3 +24,35 @@ function fixTextColor(button) {
        	var b = 255-parts[2];
 	$(button).css("color","rgb("+r+","+g+","+b+")");
 }
+
+//Old Code
+
+/*
+var tiles = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+var tilesCheck = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+	function clickedTile(button) {
+	
+	if (tiles[button.id] == 1){
+		tiles[button.id] = 0
+	}
+	else{
+		tiles[button.id] += 1
+	}
+	var ID = button.id
+	alert(tiles[button.id])
+	}
+
+	function checkTile() {
+		
+	}
+	
+	function createPattern() {
+		for (var i=0;i<tilesCheck.length;i++){
+			var randomnumber=Math.floor(Math.random()*2)
+			tilesCheck[i] = randomnumber
+			tiles[i] = randomnumber
+		}
+		
+	}
+	*\
