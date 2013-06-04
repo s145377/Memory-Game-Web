@@ -1,7 +1,6 @@
 // JavaScript Document
 var tiles = new Array();
 var correct = new Array();
-var colors = 3;
 var white = "rgb(255, 255, 255)";
 var red = "rgb(255, 0, 0)";
 var blue = "rgb(0, 255, 255)";
@@ -19,6 +18,12 @@ function reset() {
 	}
 	
 }
+function generate() {
+	for(var i = 0; i < 16; i++) {
+		var color = Math.floor(Math.random() * 4)+1;
+		changeColor(button, color);
+	}
+}
 function clickedTile(button) {
 	var color = 0; //0=white,1=red, 2=blue, 3=limegreen
 	
@@ -31,14 +36,17 @@ function clickedTile(button) {
 	else if($(button).css("background-color")===green)
 		color = 0;
 
-	if(     color==0)
-		$(button).css("background-color",white);
-	else if(color==1)
-		$(button).css("background-color",red);
-	else if(color==2)
-		$(button).css("background-color",blue);
-	else if(color==3)
-		$(button).css("background-color",green);
+	changeColor(button, color);
+}
+function changeColor(button, color) {
+        if(     color==0)
+                $(button).css("background-color",white);
+        else if(color==1)
+                $(button).css("background-color",red);
+        else if(color==2)
+                $(button).css("background-color",blue);
+        else if(color==3)
+                $(button).css("background-color",green);
 }
 function fixTextColor(button) {
         var backcolor = $(button).css("background-color");
