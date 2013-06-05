@@ -7,7 +7,7 @@ var blue = "rgb(0, 255, 255)";
 var green = "rgb(0, 255, 0)";
 var lives = 3;
 var level;
-var colors;
+var colors = [white, red, blue, green];
 var time;
 var canChange = new Boolean();
 
@@ -55,7 +55,6 @@ function restart() {
 	setLives(START_LIVES);
 	colors = START_COLORS;
 	time = START_TIME;
-
 	doLevel();
 }
 function setLives(lives) {
@@ -65,14 +64,9 @@ function setLives(lives) {
 		restart();
 }
 function colorToNumber(button) {
-	if(     $(button).css("background-color")===white)
-                return 0;
-        else if($(button).css("background-color")===red)
-                return 1;
-        else if($(button).css("background-color")===blue)
-                return 2;
-        else if($(button).css("background-color")===green)
-                return 3;
+	for(var i = 0; i < colors.length; i++)
+		if(     $(button).css("background-color")===colors[i])
+	                return i;
 	return -1;
 
 }
@@ -88,19 +82,13 @@ function checkLevel() {
 	}
 }
 function doLevel() {
-       canChange = false;
-       generate();
-       setTimeout(function() {reset(); canChange = true}, time);
+	canChange = false;
+	generate();
+	setTimeout(function() {reset(); canChange = true}, time);
 
 }
 function changeColor(button, color) {
-        $(button).css("background-color",white);
-        if(color==1)
-                $(button).css("background-color",red);
-        else if(color==2)
-                $(button).css("background-color",blue);
-        else if(color==3)
-                $(button).css("background-color",green);
+        $(button).css("background-color",colors[color]);
 }
 function fixTextColor(button) {
         var backcolor = $(button).css("background-color");
