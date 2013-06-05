@@ -24,6 +24,7 @@ function generate() {
 		var color = Math.floor(Math.random() * 4)+1;
 		changeColor(button, color);
 		correct[i] = color;		
+		changeColor(tiles[i], color);
 	}
 }
 function clickedTile(button) {
