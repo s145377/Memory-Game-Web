@@ -5,7 +5,7 @@ var white = "rgb(255, 255, 255)";
 var red = "rgb(255, 0, 0)";
 var blue = "rgb(0, 255, 255)";
 var green = "rgb(0, 255, 0)";
-
+var winorno = "false"
 
 function reset() {
 	tiles = new Array();
@@ -19,9 +19,11 @@ function reset() {
 	
 }
 function generate() {
+	correct = new Array();
 	for(var i = 0; i < 16; i++) {
 		var color = Math.floor(Math.random() * 4)+1;
 		changeColor(button, color);
+		correct[i] = color;		
 	}
 }
 function clickedTile(button) {
@@ -37,6 +39,7 @@ function clickedTile(button) {
 		color = 0;
 
 	changeColor(button, color);
+	tiles[button.id] = color;
 }
 function changeColor(button, color) {
         if(     color==0)
@@ -55,6 +58,14 @@ function fixTextColor(button) {
         var g = 255-parts[1];
        	var b = 255-parts[2];
 	$(button).css("color","rgb("+r+","+g+","+b+")");
+}
+function levelCheck {
+	for (var i = 0; i < 16; i++) {
+		if (correct[i] != tiles[i]){
+			
+		}
+	}
+	
 }
 
 //Old Code
