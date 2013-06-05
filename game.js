@@ -5,7 +5,6 @@ var white = "rgb(255, 255, 255)";
 var red = "rgb(255, 0, 0)";
 var blue = "rgb(0, 255, 255)";
 var green = "rgb(0, 255, 0)";
-var winorno = "false"
 
 function reset() {
 	tiles = new Array();
@@ -22,25 +21,28 @@ function generate() {
 	correct = new Array();
 	for(var i = 0; i < 16; i++) {
 		var color = Math.floor(Math.random() * 4)+1;
-		changeColor(button, color);
 		correct[i] = color;		
 		changeColor(tiles[i], color);
 	}
 }
 function clickedTile(button) {
-	var color = 0; //0=white,1=red, 2=blue, 3=limegreen
-	
-	if(     $(button).css("background-color")===white)
-		color = 1;
-	else if($(button).css("background-color")===red)
-		color = 2;
-	else if($(button).css("background-color")===blue)
-		color = 3;
-	else if($(button).css("background-color")===green)
+	var color = colorToNumber(button)+1; //0=white,1=red, 2=blue, 3=limegreen
+	if(color>3)
 		color = 0;
-
 	changeColor(button, color);
 	tiles[button.id] = color;
+}
+function colorToNumber(button) {
+	if(     $(button).css("background-color")===white)
+                return 0;
+        else if($(button).css("background-color")===red)
+                return 1;
+        else if($(button).css("background-color")===blue)
+                return 2;
+        else if($(button).css("background-color")===green)
+                return 3;
+	return -1;
+
 }
 function changeColor(button, color) {
         if(     color==0)
@@ -60,13 +62,13 @@ function fixTextColor(button) {
        	var b = 255-parts[2];
 	$(button).css("color","rgb("+r+","+g+","+b+")");
 }
-function levelCheck {
+function levelCheck() {
 	for (var i = 0; i < 16; i++) {
-		if (correct[i] != tiles[i]){
-			
+		if (correct[i] != colorToNumber(tiles[i])) {
+			return false;
 		}
 	}
-	
+	return true;
 }
 
 //Old Code
