@@ -7,15 +7,17 @@ var blue = "rgb(0, 255, 255)";
 var green = "rgb(0, 255, 0)";
 var lives = 3;
 var level;
-var colors = [white, red, blue, green];
+var colorsList = [white, red, blue, green];
 var time;
 var canChange = new Boolean();
+var numColors;
+var difficulty = 1;
 
 var LEVEL_TIME_DECREASE = .98;
 var START_TIME = 5000;
 var START_LEVEL = 1;
 var START_LIVES = 3;
-var START_COLORS = 2; // includes white
+var START_NUM_COLORS = 2; // includes white
 var COLOR_ORDER = new Array();
 
 function reset() {
@@ -33,19 +35,23 @@ function generate() {
 	reset();
 	correct = new Array();
 	for(var i = 0; i < 16; i++) {
-		var color = Math.floor(Math.random() * 4);
+		var color = random(0,numColors);
 		correct[i] = color;	
 		changeColor(tiles[i], color);
 	}
 }
+function random(low, high) {
+	return Math.floor(Math.random()*(high-low)+low);
+}
 function setLevel(level) {
 	this.level = level;
+	numColors = Math.floor(.2*difficulty*level)+2;
 	$(document.getElementById("level")).text("Level - "+level);
 }
 function clickedTile(button) {
 	if(canChange) {
-		var color = colorToNumber(button)+1; //0=white,1=red, 2=blue, 3=limegreen
-		if(color>3)
+		var color = colorToNumber(button)+1;
+		if(color>=numColors)
 			color = 0;
 		changeColor(button, color);
 	}
@@ -53,7 +59,7 @@ function clickedTile(button) {
 function restart() {
 	setLevel(START_LEVEL);
 	setLives(START_LIVES);
-	colors = START_COLORS;
+	numColors = START_NUM_COLORS;
 	time = START_TIME;
 	doLevel();
 }
@@ -64,20 +70,20 @@ function setLives(lives) {
 		restart();
 }
 function colorToNumber(button) {
-	for(var i = 0; i < colors.length; i++)
-		if(     $(button).css("background-color")===colors[i])
+	for(var i = 0; i < colorsList.length; i++)
+		if(     $(button).css("background-color")===colorsList[i])
 	                return i;
 	return -1;
 
 }
 function checkLevel() {
 	if(!check()) {
-		lives--;
-		restart();
+		setLives(lives-1);
+		doLevel();
 	}
 	else {
 		setLevel(level+1);
-       		time*=LEVEL_TIME_DECREASE;
+       		time*=LEVEL_TIME_DECREASE/difficulty;
 		doLevel();
 	}
 }
@@ -88,7 +94,7 @@ function doLevel() {
 
 }
 function changeColor(button, color) {
-        $(button).css("background-color",colors[color]);
+        $(button).css("background-color",colorsList[color]);
 }
 function fixTextColor(button) {
         var backcolor = $(button).css("background-color");
