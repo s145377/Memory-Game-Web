@@ -21,7 +21,7 @@ function reset() {
 function generate() {
 	for(var i = 0; i < 16; i++) {
 		var color = Math.floor(Math.random() * 4)+1;
-		changeColor(button, color);
+		changeColor(tiles[i], color);
 	}
 }
 function clickedTile(button) {
