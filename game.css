@@ -1,4 +1,16 @@
-.0
+h1
 {
-	background-color:#4682b4; font:2em;
+	color:red; font:4em;
+}
+h2
+{
+	color:blue; font:2em;
+}
+
+.tile
+{
+	visibility:hidden;
+	width:100%;
+	min-height:1px;
+	height:100%;
 }
