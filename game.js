@@ -12,6 +12,7 @@ var time;
 var canChange = new Boolean();
 var numColors;
 var difficulty = 1;
+var mode = 0; //0=waiting to start, 1=showing colors, 2=playing game
 
 var LEVEL_TIME_DECREASE = .98;
 var START_TIME = 5000;
@@ -24,9 +25,7 @@ function reset() {
 	tiles = new Array();
 	for(var i = 0; i < 16; i++) {
 		tiles.push(document.getElementById(i));
-		$(tiles[i]).text("1");
-		$(tiles[i]).css("background-color",white);
-		fixTextColor(tiles[i]);		
+		changeColor(tiles[i],0);		
 		$(tiles[i]).css("visibility","visible");
 	}
 	
@@ -95,6 +94,8 @@ function doLevel() {
 }
 function changeColor(button, color) {
         $(button).css("background-color",colorsList[color]);
+	$(button).text(color);
+	fixTextColor(button);
 }
 function fixTextColor(button) {
         var backcolor = $(button).css("background-color");
