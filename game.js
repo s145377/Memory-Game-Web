@@ -1,5 +1,6 @@
 // JavaScript Document
 var tiles = new Array();
+var started = false;
 var correct = new Array();
 var white = "rgb(255, 255, 255)";
 var red = "rgb(255, 0, 0)";
@@ -56,11 +57,12 @@ function clickedTile(button) {
 	}
 }
 function restart() {
+	reset();
 	setLevel(START_LEVEL);
 	setLives(START_LIVES);
 	numColors = START_NUM_COLORS;
 	time = START_TIME;
-	doLevel();
+	setMode(0);
 }
 function setLives(lives) {
 	this.lives = lives;
@@ -70,10 +72,19 @@ function setLives(lives) {
 }
 function colorToNumber(button) {
 	for(var i = 0; i < colorsList.length; i++)
-		if(     $(button).css("background-color")===colorsList[i])
+		if($(button).css("background-color")===colorsList[i])
 	                return i;
 	return -1;
 
+}
+function infoPress() {
+	if(mode==0)
+		doLevel();
+	else if(mode==1) {
+		startLevel();
+	}
+	else if(mode==2)
+		doLevel();
 }
 function checkLevel() {
 	if(!check()) {
@@ -88,8 +99,30 @@ function checkLevel() {
 }
 function doLevel() {
 	canChange = false;
+	started = false;
+	setMode(1);
 	generate();
-	setTimeout(function() {reset(); canChange = true}, time);
+	setTimeout(function() {startLevel()}, time);
+
+}
+function startLevel() {
+	if(!started) {
+		reset();
+		canChange = true;
+		setMode(2);
+		started = true;
+	}
+}
+function setMode(mode) {
+	var text = "Start";
+	this.mode = mode;
+	if(mode==0)
+		text = "Start";
+	else if(mode==1)
+		text = "Skip";
+	else if(mode==2)
+		text = "Check";
+	$(document.getElementById("info")).text(text);
 
 }
 function changeColor(button, color) {
@@ -113,4 +146,3 @@ function check() {
 	}
 	return true;
 }
-
