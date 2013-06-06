@@ -84,10 +84,10 @@ function infoPress() {
 		startLevel();
 	}
 	else if(mode==2)
-		doLevel();
+		checkLevel();
 }
 function checkLevel() {
-	if(!check()) {
+	if(check() == false) {
 		setLives(lives-1);
 		doLevel();
 	}
