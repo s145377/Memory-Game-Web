@@ -1,0 +1,13 @@
+import java.util.ArrayList;
+
+
+public class Average {
+	ArrayList<Integer> data;
+	double outLier = .94;
+	public Average() {
+		this(new ArrayList<Integer>());
+	}
+	public Average(ArrayList<Integer> data) {
+		this.data = data;
+	}
+}

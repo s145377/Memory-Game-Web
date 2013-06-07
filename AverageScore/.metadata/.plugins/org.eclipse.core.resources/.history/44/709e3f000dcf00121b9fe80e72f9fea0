@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+
+
+public class Average {
+	ArrayList<Integer> scores;
+	double outlier = .15;
+	public Average() {
+		this(new ArrayList<Integer>());
+	}
+	public Average(ArrayList<Integer> scores) {
+		this.scores = scores;
+	}
+	public boolean setOutlier(double percent) {
+		if(percent>=0 && percent<100) {
+			outlier = percent;
+			return true;
+		}
+		return false;
+	}
+	public void removeData(Integer score) {
+		
+	}
+}
