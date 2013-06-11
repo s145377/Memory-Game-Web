@@ -4,7 +4,7 @@ var started = false;
 var correct = new Array();
 var white = "rgb(255, 255, 255)";
 var red = "rgb(255, 0, 0)";
-var blue = "rgb(0, 255, 255)";
+var blue = "rgb(0, 51, 102)";
 var green = "rgb(0, 255, 0)";
 var lives = 3;
 var level;
@@ -145,4 +145,8 @@ function check() {
 		}
 	}
 	return true;
+}
+function submitScore() {
+	
+	
 }
