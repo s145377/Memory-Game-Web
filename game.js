@@ -36,7 +36,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 			$(tiles[i]).css("visibility","visible");
 	}
 	
-	function start() {
+	this.start = function() {
 		info = document.getElementById("info");
 		info.text("Start");
 		info.onclick = function() {
@@ -68,7 +68,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 					info.onclick = function() {
 						check();
 					}    			
-    			}, time);
+    		}, time);
 			
         }
     }
