@@ -28,16 +28,20 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	var pattern = new Array();
 	var tiles = new Array();
 	
-	var info = document.getElementById("info");
+	var info;
 	
-	for(var i = 0; i < 16; i++) {
+	
+	
+	this.start = function() {
+		for(var i = 0; i < 16; i++) {
 			tiles.push(document.getElementById(i));
 			changeColor(tiles[i],0);		
 			$(tiles[i]).css("visibility","visible");
-	}
-	
-	this.start = function() {
+		}
+		
+		info = document.getElementById("info");
 		info.text("Start");
+		
 		info.onclick = function() {
 			info.text("Skip");
 	    		reset();
@@ -45,7 +49,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 		}
 		setLives(startLives);
 
-    }
+	}
     function nextLevel() {
 
     	if(levels === -1 || level < levels) {
@@ -131,6 +135,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
     }
     
 };
+
 var g = new Game(3, 100, 5000, 5, ["rgb(255, 255, 255)", "rgb(255, 0, 0)", "rgb(0, 51, 102)", "rgb(0, 255, 0)"], 2, 1);
 
 window.onload = g.start();
