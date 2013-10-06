@@ -2,7 +2,7 @@
 
 /*
 
-levels              - number of levels in this game,                    -1 for no limit
+levels              - number of levels in this game,                    -1 for unlimited levels
 startLives          - number of lives the user is given at start,
                         rounded down if not a whole number              -1 for unlimited lives
 liveIncrease        - percent number of lives is increased per
@@ -15,38 +15,50 @@ colors              - array of tile colors
 startTileColors     - number of tile colors on first level, rounded
                         down if not a whole number 
 tileColorIncrease   - percent increase in number of tile colors per
-                        level                                           -1 for no increase
+                        level
 startLevel          - level that the user starts on
 
 */
 var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colors, startTileColors, tileColorIncrease) {
    
     var lives;
-    var tileColors;
-
+	var tiles;
    
    
     function start() {
         var level = 0;
+        reset();
         setLives(startLives);
-        setTileColors(startTileColors);
-       
-        while(level < levels) {
+
+        while(levels === -1 || level < levels) {
             doLevel(level) ? (level++, setLives(lives+lives*liveIncrease) : setLives(lives-1);
         }
     }
     function doLevel(level) {
         var levelTime = Math.floor(startLevelTime * Math.pow((1-levelTimeDecrease), level));
-    }
-    
-    function setLives(l) {
-        if(l===-1)
-            lives = -1;
-        else
-            lives = Math.floor(l);
-    }
-    function setTileColors(tc) {
         tileColors = Math.floor(tc);
+        var pattern = new Array();
+        
+        for(var i = 0; i < 16; i++) {
+			var color = random(0, numColors);
+			pattern[i] = color;	
+			changeColor(tiles[i], color);
+		}
+    }
+    function reset() {
+		tiles = new Array();
+		for(var i = 0; i < 16; i++) {
+			tiles.push(document.getElementById(i));
+			changeColor(tiles[i],0);		
+			$(tiles[i]).css("visibility","visible");
+		}
+	}
+    
+    function random(low, high) {
+		return Math.floor(Math.random()*(high-low)+low);
+	}
+    function setLives(l) {
+        (l===-1) ? lives = -1 : lives = Math.floor(l);
     }
     
 };
