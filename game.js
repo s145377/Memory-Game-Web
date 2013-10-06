@@ -20,44 +20,114 @@ startLevel          - level that the user starts on
 
 */
 var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colors, startTileColors, tileColorIncrease) {
-   
-    var lives;
-	var tiles;
-   
-   
-    function start() {
-        var level = 0;
-        reset();
-        setLives(startLives);
+	
+	var lives;
+	var level;
+	var timeDelay;
 
-        while(levels === -1 || level < levels) {
-            doLevel(level) ? (level++, setLives(lives+lives*liveIncrease) : setLives(lives-1);
+	var pattern = new Array();
+	var tiles = new Array();
+	
+	var info = document.getElementById("info");
+	
+	for(var i = 0; i < 16; i++) {
+			tiles.push(document.getElementById(i));
+			changeColor(tiles[i],0);		
+			$(tiles[i]).css("visibility","visible");
+	}
+	
+	function start() {
+		info = document.getElementById("info");
+		info.text("Start");
+		info.onclick = function() {
+			info.text("Skip");
+	    	reset();
+	        nextLevel();
+		}
+		setLives(startLives);
+
+    }
+    function nextLevel() {
+
+    	if(levels === -1 || level < levels) {
+    		generateLevel(level);
+			info.text("Skip");
+			info.onclick = function() {
+				reset();
+				clearTimeout(timeDelay);
+				var info = document.getElementById("info");
+				info.text("Check");
+				info.onclick = function() {
+					check();
+				}
+			}
+    		timeDelay = setTimeout(function() {
+					reset();
+					var info = document.getElementById("info");
+					info.text("Check");
+					info.onclick = function() {
+						check();
+					}    			
+    			}, time);
+			
         }
     }
-    function doLevel(level) {
-        var levelTime = Math.floor(startLevelTime * Math.pow((1-levelTimeDecrease), level));
+    function generateLevel(l) {
+        var levelTime = Math.floor(startLevelTime * Math.pow((1-levelTimeDecrease), l));
         tileColors = Math.floor(tc);
-        var pattern = new Array();
         
         for(var i = 0; i < 16; i++) {
 			var color = random(0, numColors);
 			pattern[i] = color;	
 			changeColor(tiles[i], color);
 		}
+		
+    }
+    function check() {
+    	var redo = false;
+    	
+    	reset();
+    	
+    	for(var i = 0; i < 16; i++) {
+    		if(!$(tiles[i]).css("background-color")==pattern[i])
+    			redo = true;
+    	}
+    	(!redo) ? 
+            				 (level++, setLives(lives+lives*liveIncrease))
+            				 : setLives(lives-1);
     }
     function reset() {
-		tiles = new Array();
 		for(var i = 0; i < 16; i++) {
 			tiles.push(document.getElementById(i));
 			changeColor(tiles[i],0);		
 			$(tiles[i]).css("visibility","visible");
 		}
 	}
-    
+	function changeColor(button, color) {
+    	$(button).css("background-color",colors[color]);
+		$(button).text(color);
+		
+		//fix text color
+		var backColor = colors[color];
+		var parts = backColor.replace('(', '')
+							 .replace(')', '')
+							 .split(",");
+		var r = 255-parts[0];	
+        var g = 255-parts[1];
+       	var b = 255-parts[2];
+		$(button).css("color","rgb("+r+","+g+","+b+")");
+	}
+	
+	function lose() {
+		
+	}
+	
     function random(low, high) {
 		return Math.floor(Math.random()*(high-low)+low);
 	}
     function setLives(l) {
+        if(lives!=-1 && !lives>0)
+        	lose();
         (l===-1) ? lives = -1 : lives = Math.floor(l);
     }
     
