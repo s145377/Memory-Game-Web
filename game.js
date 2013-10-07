@@ -133,7 +133,7 @@ var g = new Game(3, 100, 5000, 5, ["rgb(255, 255, 255)", "rgb(255, 0, 0)", "rgb(
 window.onload = function() { 
 	    for(var i = 0; i < 16; i++) {
 	    	    tiles.push(document.getElementById(i));
-	    	    changeColor(tiles[i],"rgb(0, 0, 0)");	    	    
+	    	    changeColor(tiles[i],"rgb(255, 255, 255)");	    	    
 	    	    $(tiles[i]).css("visibility","visible");
 	    }
 	    info = document.getElementById("info");
