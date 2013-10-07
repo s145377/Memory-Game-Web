@@ -28,22 +28,36 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    var lives;
 	    var level;
 	    var timeDelay;
+	    
+		var tileClicked = function(button) {  
 
+					var color = colorToNumber(button)+1;
+			
+					if(color>=numColors)
+						color = 0;
+						changeColor(button, color);
+					}
+		}
 	    var pattern = new Array();
 
-	    this.start = function() {
+	    this.start = function () {
 	    	    
 	    	    $(info).text("Start");
 	    	    info.onclick = function() {
-	    	    	    $(info).text("Skip");
-	    	    	    reset();
-	    	    	    nextLevel();
+	    	        $(info).text("Skip");
+	    	        reset();
+	    	        nextLevel();
 	    	    }
+	    	    
+	    	    
+	    	    
 	    	    setLives(startLives);
 	    }
-	    
+	    function clickedTile(button) {
+			tileClicked(button);
+		}
+		
 	    function nextLevel() {
-
 	    	    if(levels === -1 || level < levels) {
 	    	    	    generateLevel(level);
 	    	    	    $(info).text("Skip");
@@ -55,11 +69,23 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    	    	    	    info.onclick = function() {
 	    	    	    	    	    check();
 	    	    	    	    }
+	    	    	    	    tileClicked = function() {} //can't change tile color now
 	    	    	    }
 	    	    	    timeDelay = setTimeout(function() {
 	    	    	    	    	    reset();
 	    	    	    	    	    var info = document.getElementById("info");
 	    	    	    	    	    $(info).text("Check");
+	    	    	    	    	    
+	    	    	    	    	    tileClicked = function(button) {  
+	    	    	    	    	    	//make it possible to change tile color
+			
+											var color = colorToNumber(button)+1;
+			
+											if(color>=numColors)
+												color = 0;
+											changeColor(button, color);
+										}
+	    	    	    	    	    
 	    	    	    	    	    info.onclick = function() {
 	    	    	    	    	    	    check();
 	    	    	    	    	    }	    	    	    	    
