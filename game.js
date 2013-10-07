@@ -40,7 +40,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 		}
 		
 		info = document.getElementById("info");
-		info.value = "Start";
+		info.innerHTML = "Start";
 		
 		info.onclick = function() {
 			info.innerHTML = "Skip";
