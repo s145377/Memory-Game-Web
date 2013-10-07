@@ -40,9 +40,9 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 		}
 		
 		info = document.getElementById("info");
-
+		$(info).text("Start");
 		info.onclick = function() {
-			info.innerHTML = "Skip";
+			$(info).text("Skip");
 	    	reset();
 	        nextLevel();
 		}
@@ -53,12 +53,12 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 
     	if(levels === -1 || level < levels) {
     		generateLevel(level);
-			info.text("Skip");
+			$(info).text("Skip");
 			info.onclick = function() {
 				reset();
 				clearTimeout(timeDelay);
 				var info = document.getElementById("info");
-				info.innerHTML = "Check";
+				$(info).text("Check");
 				info.onclick = function() {
 					check();
 				}
@@ -66,7 +66,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
     		timeDelay = setTimeout(function() {
 					reset();
 					var info = document.getElementById("info");
-					info.innerHTML = "Check";
+					$(info).text("Check");
 					info.onclick = function() {
 						check();
 					}    			
