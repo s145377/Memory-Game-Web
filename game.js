@@ -40,12 +40,11 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 		}
 		
 		info = document.getElementById("info");
-		info.innerHTML = "Start";
-		
+
 		info.onclick = function() {
 			info.innerHTML = "Skip";
-	    		reset();
-	        	nextLevel();
+	    	reset();
+	        nextLevel();
 		}
 		setLives(startLives);
 
