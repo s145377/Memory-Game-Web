@@ -88,8 +88,8 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    	    	    	    redo = true;
 	    	    }
 	    	    (!redo) ? 
-	    	    	    	    	    	    	     (level++, setLives(lives+lives*liveIncrease))
-	    	    	    	    	    	    	     : setLives(lives-1);
+	    	    	     (level++, setLives(lives+lives*liveIncrease))
+	    	    	     : setLives(lives-1);
 	    }
 	    function reset() {
 	    	    for(var i = 0; i < 16; i++) {
@@ -131,9 +131,9 @@ function changeColor(button, color) {
 
 
 var g = new Game(3, 100, 5000, 5, ["rgb(255, 255, 255)", "rgb(255, 0, 0)", "rgb(0, 51, 102)", "rgb(0, 255, 0)"], 2, 1);
+info = document.getElementById("info");
 
 window.onload = function() {
-	info = document.getElementById("info");
 	for(var i = 0; i < 16; i++) {
 		tiles.push(document.getElementById(i));
 		changeColor(tiles[i],"rgb(255, 255, 255)");	    	    
