@@ -19,36 +19,27 @@ tileColorIncrease   - percent increase in number of tile colors per
 startLevel          - level that the user starts on
 
 */
+var tiles = new Array();
+
 var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colors, startTileColors, tileColorIncrease) {
-	
 	var lives;
 	var level;
 	var timeDelay;
-
-	var pattern = new Array();
-	var tiles = new Array();
-	
 	var info;
 	
-	
-	
+	var pattern = new Array();
+
 	this.start = function() {
-		for(var i = 0; i < 16; i++) {
-			tiles.push(document.getElementById(i));
-			changeColor(tiles[i],0);		
-			$(tiles[i]).css("visibility","visible");
-		}
 		
-		info = document.getElementById("info");
 		$(info).text("Start");
 		info.onclick = function() {
 			$(info).text("Skip");
-	    	reset();
-	        nextLevel();
+			reset();
+			nextLevel();
 		}
 		setLives(startLives);
-
 	}
+	
     function nextLevel() {
 
     	if(levels === -1 || level < levels) {
@@ -105,21 +96,6 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 			$(tiles[i]).css("visibility","visible");
 		}
 	}
-	function changeColor(button, color) {
-    	$(button).css("background-color",colors[color]);
-		$(button).text(color);
-		
-		//fix text color
-		var backColor = colors[color];
-		var parts = backColor.replace('(', '')
-							 .replace(')', '')
-							 .split(",");
-		var r = 255-parts[0];	
-        var g = 255-parts[1];
-       	var b = 255-parts[2];
-		$(button).css("color","rgb("+r+","+g+","+b+")");
-	}
-	
 	function lose() {
 		
 	}
@@ -135,7 +111,32 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
     
 };
 
+
+function changeColor(button, color) {
+	$(button).css("background-color",colors[color]);
+	$(button).text(color);
+	
+	//fix text color
+	var backColor = colors[color];
+	var parts = backColor.replace('(', '')
+						 .replace(')', '')
+						 .split(",");
+	var r = 255-parts[0];	
+    var g = 255-parts[1];
+   	var b = 255-parts[2];
+	$(button).css("color","rgb("+r+","+g+","+b+")");
+}
+
+
 var g = new Game(3, 100, 5000, 5, ["rgb(255, 255, 255)", "rgb(255, 0, 0)", "rgb(0, 51, 102)", "rgb(0, 255, 0)"], 2, 1);
 
-window.onload = function() { g.start() };
+window.onload = function() { 
+	for(var i = 0; i < 16; i++) {
+		tiles.push(document.getElementById(i));
+		changeColor(tiles[i],0);		
+		$(tiles[i]).css("visibility","visible");
+	}
+	info = document.getElementById("info");
+	g.start();
+};
 //
