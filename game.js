@@ -35,8 +35,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 			
 					if(color>=numColors)
 						color = 0;
-						changeColor(button, color);
-					}
+						changeColor(button, color);					}
 		}
 	    var pattern = new Array();
 
