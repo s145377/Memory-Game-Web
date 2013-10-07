@@ -1,5 +1,7 @@
 // JavaScript Document
 
+
+//TODO: Make this indentation pretty
 /*
 
 levels	    	    	      - number of levels in this game,	    	    	    	    	    -1 for unlimited levels
@@ -130,13 +132,13 @@ function changeColor(button, color) {
 
 var g = new Game(3, 100, 5000, 5, ["rgb(255, 255, 255)", "rgb(255, 0, 0)", "rgb(0, 51, 102)", "rgb(0, 255, 0)"], 2, 1);
 
-window.onload = function() { 
-	    for(var i = 0; i < 16; i++) {
-	    	    tiles.push(document.getElementById(i));
-	    	    changeColor(tiles[i],"rgb(255, 255, 255)");	    	    
-	    	    $(tiles[i]).css("visibility","visible");
-	    }
-	    info = document.getElementById("info");
-	    g.start();
+window.onload = function() {
+	info = document.getElementById("info");
+	for(var i = 0; i < 16; i++) {
+		tiles.push(document.getElementById(i));
+		changeColor(tiles[i],"rgb(255, 255, 255)");	    	    
+	    	$(tiles[i]).css("visibility","visible");
+	}
+	g.start();
 };
 //
