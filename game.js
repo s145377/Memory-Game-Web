@@ -56,6 +56,13 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 			tileClicked(button);
 		}
 		
+		function colorToNumber(button) {
+		for(var i = 0; i < colorsList.length; i++)
+			if($(button).css("background-color")===colorsList[i])
+	                return i;
+		return -1;
+
+		}
 	    function nextLevel() {
 	    	    if(levels === -1 || level < levels) {
 	    	    	    generateLevel(level);
