@@ -52,7 +52,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    	    
 	    	    setLives(startLives);
 	    }
-	    function clickedTile(button) {
+	    this.clickedTile = function(button) {
 			tileClicked(button);
 		}
 		
