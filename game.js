@@ -34,7 +34,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 
 					var color = colorToNumber(button)+1;
 			
-					if(color>=)
+					if(color>=tileColors)
 						color = 0;
 						changeColor(button, color);					
 		}
