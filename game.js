@@ -57,9 +57,9 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 		}
 		
 		function colorToNumber(button) {
-		for(var i = 0; i < colorsList.length; i++)
-			if($(button).css("background-color")===colorsList[i])
-	                return i;
+		for(var i = 0; i < colors.length; i++)
+			if($(button).css("background-color")===colors[i])
+	                	return i;
 		return -1;
 
 		}
