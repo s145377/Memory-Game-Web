@@ -28,12 +28,13 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    var lives;
 	    var level;
 	    var timeDelay;
+	    var tileColors;
 	    
 		var tileClicked = function(button) {  
 
 					var color = colorToNumber(button)+1;
 			
-					if(color>=numColors)
+					if(color>=)
 						color = 0;
 						changeColor(button, color);					
 		}
@@ -48,7 +49,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    	        nextLevel();
 	    	    }
 	    	    
-	    	    
+	    	    tileColors = startTileColors;
 	    	    
 	    	    setLives(startLives);
 	    }
@@ -59,7 +60,7 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 		function colorToNumber(button) {
 		for(var i = 0; i < colors.length; i++)
 			if($(button).css("background-color")===colors[i])
-	                	return i;
+	                return i;
 		return -1;
 
 		}
@@ -120,8 +121,9 @@ var Game = function (startLives, levels, startLevelTime, levelTimeDecrease, colo
 	    	    	    	    redo = true;
 	    	    }
 	    	    (!redo) ? 
-	    	    	     (level++, setLives(lives+lives*liveIncrease))
+	    	    	     (level++, setLives(lives+lives*liveIncrease/100))
 	    	    	     : setLives(lives-1);
+	    	    	     tilecolors = tileColors*tileColorIncrease/100+tileColors;
 	    }
 	    function reset() {
 	    	    for(var i = 0; i < 16; i++) {
